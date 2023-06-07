@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import Tag, Snippet
-from .serializers import TagSerializer, SnippetSerializer, SnippetHyperlinkSerializer, TagDetailSerializer
+from .serializers import TagSerializer, SnippetSerializer, TagDetailSerializer
 
 # Create your views here.
 
@@ -15,7 +15,7 @@ class OverviewAPIView(generics.GenericAPIView):
     def get(self, request):
         snippet_count = Snippet.objects.count()
         snippets = Snippet.objects.all()
-        serializer = SnippetHyperlinkSerializer(snippets, many=True, context={'request': request})
+        serializer = SnippetSerializer(snippets, many=True, context={'request': request})
         snippet_list = serializer.data
 
         response_data = {
