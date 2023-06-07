@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
+    'drf_spectacular',
 ]
 
 REST_FRAMEWORK = {
@@ -48,8 +49,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
 
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "DJANGO TEXT APP",
 }
 
 SIMPLE_JWT = {

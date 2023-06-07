@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import Tag, Snippet
+from drf_spectacular.utils import extend_schema
 from .serializers import TagSerializer, SnippetSerializer, TagDetailSerializer
 
 # Create your views here.
@@ -12,6 +13,7 @@ from .serializers import TagSerializer, SnippetSerializer, TagDetailSerializer
 class OverviewAPIView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(responses=SnippetSerializer)
     def get(self, request):
         snippet_count = Snippet.objects.count()
         snippets = Snippet.objects.all()
