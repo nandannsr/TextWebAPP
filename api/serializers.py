@@ -16,6 +16,17 @@ class SnippetSerializer(serializers.ModelSerializer):
         fields = ['title', 'content', 'tag', 'created_at']
 
 
+""" Serializer to include the links of snippets with the details """
+
+
+class SnippetHyperlinkSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='snippets-detail')
+
+    class Meta:
+        model = Snippet
+        fields = ['url', 'title', 'content', 'created_at']
+
+
 """ Serializer to include the snippets with the selected Tag"""
 
 
